@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shorifull Islam Dhali</title>
+<meta name="description" content="Shorifull Islam Dhali — CSE student at IUS, Dhaka. Android developer, competitive programmer, building software that works.">
+<meta property="og:title" content="Shorifull Islam Dhali">
+<meta property="og:description" content="CSE student & Android developer from Dhaka, Bangladesh">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -21,6 +26,9 @@
     --nav-bg: rgba(10,10,10,0.85);
     --mono: 'DM Mono', monospace;
     --sans: 'Syne', sans-serif;
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-bg-hover: rgba(255, 255, 255, 0.15);
+    --glass-border: rgba(255, 255, 255, 0.20);
   }
 
   body.light {
@@ -34,6 +42,9 @@
     --muted2: #b0aad8;
     --accent: #6c5ce7;
     --nav-bg: rgba(248,247,255,0.88);
+    --glass-bg: rgba(255, 255, 255, 0.15);
+    --glass-bg-hover: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.40);
   }
 
   body { transition: background 0.4s, color 0.4s; }
@@ -86,7 +97,8 @@
     padding: 1.25rem 4rem;
     border-bottom: 1px solid var(--border);
     background: var(--nav-bg);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     transition: background 0.4s, border-color 0.4s;
   }
 
@@ -141,9 +153,9 @@
     transition: all 0.3s;
     transform-origin: center;
   }
-  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+  .hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
   /* MOBILE NAV DRAWER */
   .mobile-nav {
@@ -200,7 +212,6 @@
     animation: fadeUp 0.8s 0.2s forwards;
   }
 
-  /* TYPING EFFECT on hero name */
   .hero-name {
     font-size: clamp(3.5rem, 9vw, 8rem);
     font-weight: 800;
@@ -223,7 +234,6 @@
     opacity: 0;
     animation: fadeUp 0.8s 0.6s forwards;
   }
-
 
   .hero-cta {
     display: flex;
@@ -337,14 +347,7 @@
     line-height: 1.9;
     margin-bottom: 1rem;
   }
-  .about-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    margin-top: 2rem;
-  }
+
   .stat {
     background: var(--bg2);
     padding: 1.5rem;
@@ -384,11 +387,9 @@
 
   /* PROJECTS */
   .project-card {
-    border: 1px solid var(--border);
-    background: var(--bg2);
     padding: 2.5rem;
     margin-bottom: 1px;
-    transition: border-color 0.2s, background 0.2s, transform 0.25s;
+    transition: background 0.2s, transform 0.25s;
     position: relative;
     overflow: hidden;
     cursor: default;
@@ -402,7 +403,7 @@
     background: var(--accent);
     transition: height 0.35s;
   }
-  .project-card:hover { border-color: var(--border2); background: var(--bg3); transform: translateX(4px); }
+  .project-card:hover { transform: translateX(4px); }
   .project-card:hover::before { height: 100%; }
 
   .project-top {
@@ -455,16 +456,17 @@
   .skills-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.40), inset 0 1px 0 rgba(255, 255, 255, 0.06);
   }
   .skill-group {
-    background: var(--bg2);
     padding: 2rem;
+    border-right: 1px solid var(--glass-border);
     transition: background 0.2s;
   }
-  .skill-group:hover { background: var(--bg3); }
+  .skill-group:last-child { border-right: none; }
+  .skill-group:hover { background: var(--glass-bg-hover); }
   .skill-group-title {
     font-family: var(--mono);
     font-size: 10px;
@@ -477,17 +479,17 @@
   .skill-list li {
     font-family: var(--mono);
     font-size: 12px;
-    color: var(--muted);
+    color: var(--text);
     display: flex;
     align-items: center;
     gap: 0.6rem;
     transition: color 0.2s, transform 0.2s;
   }
-  .skill-list li:hover { color: var(--text); transform: translateX(4px); }
+  .skill-list li:hover { color: var(--accent); transform: translateX(4px); }
   .skill-list li::before {
     content: '';
     width: 4px; height: 4px;
-    background: var(--border2);
+    background: var(--muted2);
     border-radius: 50%;
     flex-shrink: 0;
     transition: background 0.2s;
@@ -517,24 +519,25 @@
   .contact-links {
     display: flex;
     flex-direction: column;
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.40), inset 0 1px 0 rgba(255, 255, 255, 0.06);
   }
   .contact-link {
-    background: var(--bg2);
     padding: 1.25rem 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     text-decoration: none;
+    border-bottom: 1px solid var(--glass-border);
     transition: background 0.2s, padding-left 0.2s;
   }
-  .contact-link:hover { background: var(--bg3); padding-left: 2rem; }
+  .contact-link:last-child { border-bottom: none; }
+  .contact-link:hover { background: var(--glass-bg-hover); padding-left: 2rem; }
   .contact-link-label {
     font-family: var(--mono);
     font-size: 10px;
-    color: var(--muted);
+    color: var(--text);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 0.2rem;
@@ -550,6 +553,18 @@
     transition: color 0.2s, transform 0.2s;
   }
   .contact-link:hover .contact-arrow { color: var(--accent); transform: translateX(6px); }
+
+    /* CARD SHADOW for depth */
+  .project-card,
+  .skill-group,
+  .contact-link {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+  }
+  body.light .project-card,
+  body.light .skill-group,
+  body.light .contact-link {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  }
 
   /* FOOTER */
   footer {
@@ -601,6 +616,19 @@
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
 
+  /* REDUCED MOTION */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    html { scroll-behavior: auto; }
+    #trail-canvas { display: none !important; }
+    .hero-grid { animation: none; }
+    .orb { animation: none; }
+  }
+
   @media (max-width: 768px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { display: none; }
@@ -633,7 +661,22 @@
   }
   .project-link:hover { border-color: var(--accent); color: var(--accent); }
   .project-link.primary:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  /* GLASSMORPHISM — project cards only */
+  .project-card {
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.40), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+  .project-card:hover {
+    background: var(--glass-bg-hover);
+    border-color: var(--glass-border);
+  }
+  body.light .project-card {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.40);
+  }
 </style>
+<base target="_blank">
 </head>
 <body>
 
@@ -649,8 +692,8 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <button class="theme-toggle" id="themeToggle">☀ light</button>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <button class="theme-toggle" id="themeToggle" aria-pressed="false" aria-label="Toggle dark mode">☀ light</button>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileNav">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -696,12 +739,6 @@
       <h2>Code first,<br>questions later.</h2>
       <p>I'm a Computer Science & Engineering undergraduate at International University of Scholars, Dhaka. I care about writing clean, functional software and understanding systems deeply before touching them.</p>
       <p>When I'm not coding, I'm either reading Dostoevsky, stuck on a chess puzzle, or overthinking something I should've let go of yesterday.</p>
-      <div class="about-stats">
-        <div class="stat"><div class="stat-num">2025</div><div class="stat-label">Started university</div></div>
-        <div class="stat"><div class="stat-num">4.61</div><div class="stat-label">HSC GPA</div></div>
-        <div class="stat"><div class="stat-num">60+</div><div class="stat-label">WPM typing speed</div></div>
-        <div class="stat"><div class="stat-num">BD</div><div class="stat-label">Based in Dhaka</div></div>
-      </div>
     </div>
     <div class="about-details reveal">
       <div class="detail-item"><span class="detail-key">University</span><span class="detail-val">Int'l University of Scholars</span></div>
@@ -731,7 +768,7 @@
       <span class="tag">Android</span><span class="tag">Kotlin</span><span class="tag">Jetpack Compose</span><span class="tag">Room DB</span><span class="tag">MVVM</span>
     </div>
     <div class="project-links">
-      <a href="https://github.com/Aizen-Sasuke" target="_blank" class="project-link">
+      <a href="https://github.com/Aizen-Sasuke" target="_blank" rel="noopener noreferrer" class="project-link">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
         GitHub
       </a>
@@ -751,7 +788,7 @@
       <span class="tag">JSP</span><span class="tag">Oracle DB</span><span class="tag">Java</span><span class="tag">NetBeans</span><span class="tag">Full Stack</span>
     </div>
     <div class="project-links">
-      <a href="https://github.com/Aizen-Sasuke" target="_blank" class="project-link">
+      <a href="https://github.com/Aizen-Sasuke" target="_blank" rel="noopener noreferrer" class="project-link">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
         GitHub
       </a>
@@ -771,7 +808,7 @@
       <span class="tag">C++</span><span class="tag">Java</span><span class="tag">Data Structures</span><span class="tag">Algorithms</span>
     </div>
     <div class="project-links">
-      <a href="https://github.com/Aizen-Sasuke" target="_blank" class="project-link">
+      <a href="https://github.com/Aizen-Sasuke" target="_blank" rel="noopener noreferrer" class="project-link">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
         GitHub
       </a>
@@ -823,11 +860,11 @@
         <div><div class="contact-link-label">Email</div><div class="contact-link-val">shorifullislamdhali@gmail.com</div></div>
         <span class="contact-arrow">→</span>
       </a>
-      <a href="https://www.linkedin.com/in/shorifullislamx17/" target="_blank" class="contact-link">
+      <a href="https://www.linkedin.com/in/shorifullislamx17/" target="_blank" rel="noopener noreferrer" class="contact-link">
         <div><div class="contact-link-label">LinkedIn</div><div class="contact-link-val">shorifullislamx17</div></div>
         <span class="contact-arrow">→</span>
       </a>
-      <a href="https://github.com/Aizen-Sasuke" target="_blank" class="contact-link">
+      <a href="https://github.com/Aizen-Sasuke" target="_blank" rel="noopener noreferrer" class="contact-link">
         <div><div class="contact-link-label">GitHub</div><div class="contact-link-val">Aizen-Sasuke</div></div>
         <span class="contact-arrow">→</span>
       </a>
@@ -839,6 +876,25 @@
   <p>© 2026 Shorifull Islam Dhali</p>
   <p>Built from scratch — no templates.</p>
 </footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Shorifull Islam Dhali",
+  "url": "https://yourdomain.com",
+  "jobTitle": "Computer Science Student",
+  "alumniOf": {
+    "@type": "EducationalOrganization",
+    "name": "International University of Scholars"
+  },
+  "knowsAbout": ["Android Development", "Kotlin", "Algorithms", "Competitive Programming"],
+  "sameAs": [
+    "https://github.com/Aizen-Sasuke",
+    "https://www.linkedin.com/in/shorifullislamx17/"
+  ]
+}
+</script>
 
 <script>
   // SCROLL REVEAL
@@ -853,24 +909,46 @@
   }, { threshold: 0.08 });
   reveals.forEach(r => obs.observe(r));
 
-  // THEME TOGGLE
+  // THEME TOGGLE with persistence
   const toggle = document.getElementById('themeToggle');
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  function applyTheme(isLight) {
+    if (isLight) {
+      document.body.classList.add('light');
+      toggle.textContent = '☾ dark';
+      toggle.setAttribute('aria-pressed', 'true');
+    } else {
+      document.body.classList.remove('light');
+      toggle.textContent = '☀ light';
+      toggle.setAttribute('aria-pressed', 'false');
+    }
+  }
+
+  if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
+    applyTheme(true);
+  }
+
   toggle.addEventListener('click', () => {
-    document.body.classList.toggle('light');
-    const isLight = document.body.classList.contains('light');
-    toggle.textContent = isLight ? '☾ dark' : '☀ light';
+    const isLight = !document.body.classList.contains('light');
+    applyTheme(isLight);
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
   });
 
-  // HAMBURGER MENU
+  // HAMBURGER MENU with aria-expanded
   const hamburger = document.getElementById('hamburger');
   const mobileNav = document.getElementById('mobileNav');
   hamburger.addEventListener('click', () => {
+    const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+    hamburger.setAttribute('aria-expanded', !isOpen);
     hamburger.classList.toggle('open');
     mobileNav.classList.toggle('open');
-    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    document.body.style.overflow = !isOpen ? 'hidden' : '';
   });
   document.querySelectorAll('.mobile-link').forEach(link => {
     link.addEventListener('click', () => {
+      hamburger.setAttribute('aria-expanded', 'false');
       hamburger.classList.remove('open');
       mobileNav.classList.remove('open');
       document.body.style.overflow = '';
@@ -896,9 +974,6 @@
   window.addEventListener('scroll', activateNav, { passive: true });
   activateNav();
 
-
-
-
   // ── TENDRIL TRAIL (Dream Line style) ──
   (function() {
     const canvas = document.getElementById('trail-canvas');
@@ -916,28 +991,33 @@
     let tendrils = [];
     let huePhase = Math.random() * Math.PI * 2;
     let initiated = false;
+    let dpr = window.devicePixelRatio || 1;
+    let resizeTimeout;
 
     function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      dpr = window.devicePixelRatio || 1;
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
     resize();
-    window.addEventListener('resize', resize);
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(resize, 150);
+    });
 
-    // Oscillator for hue cycling
     function getHue() {
       huePhase += 0.0015;
-      // dark: cycles blues/purples (200–300); light: cycles purples/pinks (260–340)
       const isLight = document.body.classList.contains('light');
       const offset = isLight ? 295 : 260;
       const amp    = isLight ? 45  : 55;
       return offset + Math.sin(huePhase) * amp;
     }
 
-    // Node class
     function Node() { this.x = 0; this.y = 0; this.vx = 0; this.vy = 0; }
 
-    // Tendril class
     function Tendril(springBase) {
       this.spring = springBase + (Math.random() * 0.1) - 0.05;
       this.friction = settings.friction + (Math.random() * 0.01) - 0.005;
@@ -995,20 +1075,40 @@
       }
     }
 
+    let lastFrameTime = performance.now();
+    let frameCount = 0;
+    let avgFps = 60;
+    let adaptiveTrails = settings.trails;
+
     function loop() {
       requestAnimationFrame(loop);
       if (!initiated) return;
 
+      const now = performance.now();
+      frameCount++;
+      if (now - lastFrameTime >= 1000) {
+        avgFps = frameCount;
+        frameCount = 0;
+        lastFrameTime = now;
+        if (avgFps < 30 && adaptiveTrails > 8) {
+          adaptiveTrails = Math.max(8, adaptiveTrails - 2);
+        } else if (avgFps > 50 && adaptiveTrails < settings.trails) {
+          adaptiveTrails = Math.min(settings.trails, adaptiveTrails + 1);
+        }
+      }
+
       const isLight = document.body.classList.contains('light');
-      // clear canvas fully each frame — no fill, just transparent
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
 
       ctx.globalCompositeOperation = 'screen';
       const hue = getHue();
       ctx.strokeStyle = `hsla(${Math.round(hue)},85%,65%,0.28)`;
       ctx.lineWidth = 1;
 
-      for (const t of tendrils) { t.update(); t.draw(); }
+      for (let i = 0; i < adaptiveTrails; i++) {
+        tendrils[i].update();
+        tendrils[i].draw();
+      }
     }
 
     document.addEventListener('mousemove', function onFirst(e) {
@@ -1042,7 +1142,7 @@
       ci++;
       setTimeout(type, 38);
     } else {
-      full += '\n';
+      full += '<br>';
       li++;
       ci = 0;
       setTimeout(type, 260);
