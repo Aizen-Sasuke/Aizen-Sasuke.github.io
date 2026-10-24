@@ -3,12 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shorifull Islam Dhali</title>
-<meta name="description" content="Shorifull Islam Dhali — CSE student at IUS, Dhaka. Android developer, competitive programmer, building software that works.">
-<meta property="og:title" content="Shorifull Islam Dhali">
-<meta property="og:description" content="CSE student & Android developer from Dhaka, Bangladesh">
+<title>Shorifull Islam Dhali — Developer</title>
+<meta name="description" content="Shorifull Islam Dhali — CSE undergraduate in Dhaka building interactive web experiments, simulations, and Android apps. Every project here is live and openable.">
+<link rel="canonical" href="https://aizen-sasuke.github.io/">
+<meta name="theme-color" content="#0a0a0a">
+<meta property="og:title" content="Shorifull Islam Dhali — Developer">
+<meta property="og:description" content="Interactive web experiments, simulations, and Android apps — built from scratch, live in the browser.">
 <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
+<meta property="og:url" content="https://aizen-sasuke.github.io/">
+<meta property="og:site_name" content="Shorifull Islam Dhali">
+<meta property="og:image" content="https://aizen-sasuke.github.io/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Shorifull Islam Dhali — developer portfolio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shorifull Islam Dhali — Developer">
+<meta name="twitter:description" content="Interactive web experiments, simulations, and Android apps — live in the browser.">
+<meta name="twitter:image" content="https://aizen-sasuke.github.io/assets/og.jpg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -675,6 +687,195 @@
   body.light .project-card {
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.40);
   }
+
+  /* ============================================================
+     PROJECTS — thumbnail grid
+     ============================================================ */
+  .projects-featured,
+  .projects-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+  .projects-featured {
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 1.5rem;
+  }
+  .projects-grid { grid-template-columns: 1fr 1fr; }
+
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin-bottom: 0;
+    border-radius: 3px;
+    overflow: hidden;
+    cursor: default;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.40), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                border-color 0.3s,
+                background 0.3s,
+                box-shadow 0.3s;
+  }
+  .project-card::before { content: none; }
+  .project-card:hover {
+    transform: translateY(-4px);
+    background: var(--glass-bg-hover);
+    border-color: var(--accent);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+  body.light .project-card {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.40);
+  }
+  body.light .project-card:hover {
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.40);
+  }
+
+  .project-thumb {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--bg3);
+    border-bottom: 1px solid var(--glass-border);
+  }
+  .project-thumb img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    filter: saturate(0.95);
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), filter 0.4s;
+  }
+  .project-card:hover .project-thumb img {
+    transform: scale(1.04);
+    filter: saturate(1.06);
+  }
+  .project-thumb.no-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      linear-gradient(135deg, rgba(74, 144, 217, 0.10), transparent 55%),
+      var(--bg3);
+  }
+  .thumb-mark {
+    font-size: clamp(4rem, 8vw, 6.5rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--muted);
+    transition: -webkit-text-stroke-color 0.3s;
+  }
+  .project-card:hover .thumb-mark { -webkit-text-stroke-color: var(--accent); }
+
+  .project-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1.6rem 1.6rem 1.7rem;
+  }
+
+  .project-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.9rem;
+  }
+  .project-head .project-tech { margin-top: 0.3rem; }
+  .project-title { font-size: 1.2rem; }
+
+  .project-status {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--border2);
+    border-radius: 999px;
+    padding: 0.28rem 0.6rem;
+    white-space: nowrap;
+  }
+  .project-status .dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #3fb950;
+    box-shadow: 0 0 6px #3fb950;
+  }
+  .project-status.offline .dot { background: var(--muted2); box-shadow: none; }
+
+  .project-desc {
+    font-size: 11.5px;
+    line-height: 1.75;
+    color: var(--text);
+    opacity: 0.82;
+    margin-bottom: 1.15rem;
+    max-width: none;
+  }
+  .project-tags { gap: 0.4rem; margin-bottom: 0.2rem; }
+  .tag { padding: 0.26rem 0.6rem; font-size: 9px; }
+  .tag:hover { transform: none; }
+
+  .project-links {
+    margin-top: auto;
+    padding-top: 1.35rem;
+    gap: 0.5rem;
+  }
+
+  .also-built {
+    margin-top: 1.5rem;
+    padding: 1.25rem 1.6rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: var(--bg2);
+  }
+  .also-built .ab-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted2);
+  }
+  .also-built a {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .also-built a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  @media (max-width: 900px) {
+    .projects-featured, .projects-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .project-body { padding: 1.35rem 1.35rem 1.45rem; }
+    .project-title { font-size: 1.1rem; }
+    .also-built { padding: 1.1rem 1.25rem; gap: 0.5rem 1.25rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .project-card:hover { transform: none; }
+    .project-card:hover .project-thumb img { transform: none; }
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
 </style>
 <base target="_blank">
 </head>
@@ -722,11 +923,9 @@
   <div class="hero-cta">
     <a href="#projects" class="btn btn-primary">View Projects</a>
     <a href="#contact" class="btn btn-ghost">Get in touch</a>
-    <a href="resume.pdf" download class="btn btn-ghost" style="display:inline-flex;align-items:center;gap:0.5rem;">
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M6 1v7M3 6l3 3 3-3M1 10h10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      Resume
+    <a href="https://github.com/Aizen-Sasuke" class="btn btn-ghost" style="display:inline-flex;align-items:center;gap:0.5rem;">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+      GitHub
     </a>
   </div>
 </div>
@@ -737,7 +936,8 @@
   <div class="about-grid">
     <div class="about-text reveal">
       <h2>Code first,<br>questions later.</h2>
-      <p>I'm a Computer Science & Engineering undergraduate at International University of Scholars, Dhaka. I care about writing clean, functional software and understanding systems deeply before touching them.</p>
+      <p>I'm a Computer Science &amp; Engineering undergraduate at International University of Scholars, Dhaka. I care about writing clean, functional software and understanding systems deeply before touching them — most of what's on this page is live, so you can poke at it instead of taking my word for it.</p>
+      <p>Lately that's meant a lot of canvas, WebGL and Web Audio work: physics simulations, generative visuals, small games. I also build Android apps, and I built the site for Aesthe Steps, a footwear brand, on Next.js with Payload CMS behind it.</p>
       <p>When I'm not coding, I'm either reading Dostoevsky, stuck on a chess puzzle, or overthinking something I should've let go of yesterday.</p>
     </div>
     <div class="about-details reveal">
@@ -746,7 +946,7 @@
       <div class="detail-item"><span class="detail-key">Location</span><span class="detail-val">Dhaka, Bangladesh</span></div>
       <div class="detail-item"><span class="detail-key">Volunteer</span><span class="detail-val">BDRCS National HQ Youth</span></div>
       <div class="detail-item"><span class="detail-key">Languages</span><span class="detail-val">Bangla, English</span></div>
-      <div class="detail-item"><span class="detail-key">Interests</span><span class="detail-val">Competitive programming, Android</span></div>
+      <div class="detail-item"><span class="detail-key">Interests</span><span class="detail-val">Generative visuals, Android, chess</span></div>
     </div>
   </div>
 </section>
@@ -755,64 +955,189 @@
 <section id="projects">
   <p class="section-label reveal">02 — Projects</p>
 
-  <div class="project-card reveal">
-    <div class="project-top">
-      <div>
-        <div class="project-title">Etcha — Habit Tracker</div>
-        <div class="project-tech">Kotlin · Jetpack Compose · Room · MVVM</div>
+  <div class="projects-featured">
+
+    <article class="project-card reveal">
+      <div class="project-thumb">
+        <img src="assets/cymatics.jpg" alt="Cymatics Lab — a 3D Chladni plate with grains gathered along standing-wave nodal lines" loading="lazy" width="1200" height="750">
       </div>
-      <div class="project-num">01</div>
-    </div>
-    <p class="project-desc">A fully-featured Android habit tracking app with streak logic, streak freeze, heatmap visualization, drag-to-reorder, and per-tracker accent colors. Built on MVVM architecture with Room for persistent local storage — clean separation of concerns, zero data loss across sessions.</p>
-    <div class="project-tags">
-      <span class="tag">Android</span><span class="tag">Kotlin</span><span class="tag">Jetpack Compose</span><span class="tag">Room DB</span><span class="tag">MVVM</span>
-    </div>
-    <div class="project-links">
-      <a href="https://github.com/Aizen-Sasuke" target="_blank" rel="noopener noreferrer" class="project-link">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-        GitHub
-      </a>
-    </div>
+      <div class="project-body">
+        <div class="project-head">
+          <div>
+            <h3 class="project-title">Cymatics Lab</h3>
+            <div class="project-tech">WebGL2 · GLSL · Web Audio</div>
+          </div>
+          <span class="project-status"><span class="dot"></span>Live</span>
+        </div>
+        <p class="project-desc">A 3D Chladni plate simulated on the GPU — 60,000 grains settle along real standing-wave nodal lines. Five plate shapes, a mode grid, and mic input so your own voice can move the sand.</p>
+        <div class="project-tags">
+          <span class="tag">WebGL2</span><span class="tag">GLSL</span><span class="tag">Simulation</span><span class="tag">Web Audio</span>
+        </div>
+        <div class="project-links">
+          <a href="https://aizen-sasuke.github.io/cymatics-lab/" target="_blank" rel="noopener noreferrer" class="project-link primary">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            Live demo
+          </a>
+          <a href="https://github.com/Aizen-Sasuke/cymatics-lab" target="_blank" rel="noopener noreferrer" class="project-link">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            Code
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card reveal">
+      <div class="project-thumb">
+        <img src="assets/youknowball.jpg" alt="youknowball — a football guessing game with seven game modes" loading="lazy" width="1200" height="750">
+      </div>
+      <div class="project-body">
+        <div class="project-head">
+          <div>
+            <h3 class="project-title">youknowball</h3>
+            <div class="project-tech">Vanilla JS · CSS · JSON pipeline</div>
+          </div>
+          <span class="project-status"><span class="dot"></span>Live</span>
+        </div>
+        <p class="project-desc">A football guessing game with seven modes — classic, solo, wordle, grid, career path, daily and online. Five clues per player, and the fewer you need, the more you score.</p>
+        <div class="project-tags">
+          <span class="tag">JavaScript</span><span class="tag">Game</span><span class="tag">Data pipeline</span>
+        </div>
+        <div class="project-links">
+          <a href="https://aizen-sasuke.github.io/youknowball/" target="_blank" rel="noopener noreferrer" class="project-link primary">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            Live demo
+          </a>
+          <a href="https://github.com/Aizen-Sasuke/youknowball" target="_blank" rel="noopener noreferrer" class="project-link">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            Code
+          </a>
+        </div>
+      </div>
+    </article>
+
   </div>
 
-  <div class="project-card reveal">
-    <div class="project-top">
-      <div>
-        <div class="project-title">Garden of Knowledge</div>
-        <div class="project-tech">JSP · Oracle DB · NetBeans · Java</div>
+  <div class="projects-grid">
+
+    <article class="project-card reveal">
+      <div class="project-thumb">
+        <img src="assets/quran.jpg" alt="Quran in Numbers — Arabic, English and Bangla text side by side with verse counts" loading="lazy" width="1200" height="750">
       </div>
-      <div class="project-num">02</div>
-    </div>
-    <p class="project-desc">A full-stack Library Management System built with JSP and Oracle Database. Features user authentication, book cataloguing, borrow/return tracking, and dynamic page rendering. Designed with a Garden of Eden aesthetic using glassmorphism UI elements.</p>
-    <div class="project-tags">
-      <span class="tag">JSP</span><span class="tag">Oracle DB</span><span class="tag">Java</span><span class="tag">NetBeans</span><span class="tag">Full Stack</span>
-    </div>
-    <div class="project-links">
-      <a href="https://github.com/Aizen-Sasuke" target="_blank" rel="noopener noreferrer" class="project-link">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-        GitHub
-      </a>
-    </div>
+      <div class="project-body">
+        <div class="project-head">
+          <div>
+            <h3 class="project-title">Quran in Numbers</h3>
+            <div class="project-tech">HTML · CSS · Zero dependencies</div>
+          </div>
+          <span class="project-status"><span class="dot"></span>Live</span>
+        </div>
+        <p class="project-desc">A reader built for counting: 87 surahs, 4,406 verses, 50,664 words — every one of them measured. Arabic, English and Bangla together, in a single dependency-free file.</p>
+        <div class="project-tags">
+          <span class="tag">Data viz</span><span class="tag">HTML</span><span class="tag">No dependencies</span>
+        </div>
+        <div class="project-links">
+          <a href="https://aizen-sasuke.github.io/quran-in-numbers/" target="_blank" rel="noopener noreferrer" class="project-link primary">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            Live demo
+          </a>
+          <a href="https://github.com/Aizen-Sasuke/quran-in-numbers" target="_blank" rel="noopener noreferrer" class="project-link">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            Code
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card reveal">
+      <div class="project-thumb">
+        <img src="assets/chaos.jpg" alt="Chaos-Lab — hundreds of coloured particles scattered across a dark canvas" loading="lazy" width="1200" height="750">
+      </div>
+      <div class="project-body">
+        <div class="project-head">
+          <div>
+            <h3 class="project-title">Chaos-Lab</h3>
+            <div class="project-tech">JavaScript · Canvas 2D</div>
+          </div>
+          <span class="project-status"><span class="dot"></span>Live</span>
+        </div>
+        <p class="project-desc">Particle experiments that probably shouldn't run in a browser: cursor gravity, a button that fights back, and a name-explosion canvas holding 800 particles at 60fps.</p>
+        <div class="project-tags">
+          <span class="tag">Canvas</span><span class="tag">Physics</span><span class="tag">JavaScript</span>
+        </div>
+        <div class="project-links">
+          <a href="https://aizen-sasuke.github.io/Chaos-Lab/" target="_blank" rel="noopener noreferrer" class="project-link primary">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            Live demo
+          </a>
+          <a href="https://github.com/Aizen-Sasuke/Chaos-Lab" target="_blank" rel="noopener noreferrer" class="project-link">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            Code
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card reveal">
+      <div class="project-thumb">
+        <img src="assets/monkeypet.jpg" alt="Bit — a pixel pet that grows from your Monkeytype typing stats" loading="lazy" width="1200" height="750">
+      </div>
+      <div class="project-body">
+        <div class="project-head">
+          <div>
+            <h3 class="project-title">Monkey Pet</h3>
+            <div class="project-tech">JavaScript · LocalStorage</div>
+          </div>
+          <span class="project-status"><span class="dot"></span>Live</span>
+        </div>
+        <p class="project-desc">A pixel pet that lives on your keyboard and eats your Monkeytype stats. Type to hatch it, feed it WPM, and watch it grow from an egg into a legend.</p>
+        <div class="project-tags">
+          <span class="tag">Canvas</span><span class="tag">Pixel art</span><span class="tag">Game</span>
+        </div>
+        <div class="project-links">
+          <a href="https://aizen-sasuke.github.io/monkey_pet/" target="_blank" rel="noopener noreferrer" class="project-link primary">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            Live demo
+          </a>
+          <a href="https://github.com/Aizen-Sasuke/monkey_pet" target="_blank" rel="noopener noreferrer" class="project-link">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            Code
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card reveal">
+      <div class="project-thumb no-img">
+        <div class="thumb-mark">E</div>
+      </div>
+      <div class="project-body">
+        <div class="project-head">
+          <div>
+            <h3 class="project-title">Etcha — Habit Tracker</h3>
+            <div class="project-tech">Kotlin · Jetpack Compose · Room</div>
+          </div>
+          <span class="project-status offline"><span class="dot"></span>Repo only</span>
+        </div>
+        <p class="project-desc">A full-featured Android habit tracker: streak logic, streak freeze, heatmaps, drag-to-reorder and per-tracker accents. MVVM with Room underneath, so nothing is lost between sessions.</p>
+        <div class="project-tags">
+          <span class="tag">Android</span><span class="tag">Kotlin</span><span class="tag">Compose</span><span class="tag">MVVM</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Aizen-Sasuke/Etcha-GS" target="_blank" rel="noopener noreferrer" class="project-link primary">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            Source
+          </a>
+        </div>
+      </div>
+    </article>
+
   </div>
 
-  <div class="project-card reveal">
-    <div class="project-top">
-      <div>
-        <div class="project-title">Algorithmic Problem Solving</div>
-        <div class="project-tech">C++ · Java</div>
-      </div>
-      <div class="project-num">03</div>
-    </div>
-    <p class="project-desc">Competitive programming practice spanning matrix operations, graph traversal, mathematical modeling, and dynamic programming. Focus on minimizing time and space complexity, rapid debugging, and clean logic under strict constraints.</p>
-    <div class="project-tags">
-      <span class="tag">C++</span><span class="tag">Java</span><span class="tag">Data Structures</span><span class="tag">Algorithms</span>
-    </div>
-    <div class="project-links">
-      <a href="https://github.com/Aizen-Sasuke" target="_blank" rel="noopener noreferrer" class="project-link">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-        GitHub
-      </a>
-    </div>
+  <div class="also-built reveal">
+    <span class="ab-label">Also built</span>
+    <a href="https://github.com/Aizen-Sasuke/Garden-of-Knowledge" target="_blank" rel="noopener noreferrer">Garden of Knowledge — JSP · Oracle DB</a>
+    <a href="https://aesthesteps.vercel.app" target="_blank" rel="noopener noreferrer">Aesthe Steps — brand site · Next.js + Payload</a>
+    <a href="https://github.com/Aizen-Sasuke" target="_blank" rel="noopener noreferrer">Competitive programming — C++ / Java</a>
   </div>
 </section>
 
@@ -823,25 +1148,25 @@
     <div class="skill-group">
       <div class="skill-group-title">Languages</div>
       <ul class="skill-list">
-        <li>Kotlin</li><li>C / C++</li><li>Java</li><li>Python</li>
+        <li>JavaScript</li><li>TypeScript</li><li>Kotlin</li><li>Java</li><li>Python</li><li>C / C++</li>
       </ul>
     </div>
     <div class="skill-group">
-      <div class="skill-group-title">Core</div>
+      <div class="skill-group-title">Web &amp; Interactive</div>
       <ul class="skill-list">
-        <li>OOP Principles</li><li>Data Structures</li><li>Algorithms</li><li>MVVM Architecture</li>
+        <li>Canvas · WebGL2</li><li>Web Audio API</li><li>GLSL</li><li>Next.js</li><li>Payload CMS</li>
       </ul>
     </div>
     <div class="skill-group">
-      <div class="skill-group-title">Tools & Platforms</div>
+      <div class="skill-group-title">Android &amp; Backend</div>
       <ul class="skill-list">
-        <li>Android Studio</li><li>Jetpack Compose</li><li>Room Database</li><li>Git / GitHub</li><li>NetBeans</li>
+        <li>Jetpack Compose</li><li>Room Database</li><li>MVVM Architecture</li><li>JSP / Java Servlets</li><li>Oracle DB · SQL</li>
       </ul>
     </div>
     <div class="skill-group">
-      <div class="skill-group-title">Backend & Database</div>
+      <div class="skill-group-title">Tools &amp; Platforms</div>
       <ul class="skill-list">
-        <li>JSP / Java Servlets</li><li>Oracle Database</li><li>SQL</li>
+        <li>Git / GitHub</li><li>Android Studio</li><li>Node.js</li><li>NetBeans</li><li>Chrome DevTools</li>
       </ul>
     </div>
   </div>
@@ -882,13 +1207,14 @@
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Shorifull Islam Dhali",
-  "url": "https://yourdomain.com",
-  "jobTitle": "Computer Science Student",
+  "url": "https://aizen-sasuke.github.io/",
+  "image": "https://aizen-sasuke.github.io/assets/og.jpg",
+  "jobTitle": "Software Developer",
   "alumniOf": {
     "@type": "EducationalOrganization",
     "name": "International University of Scholars"
   },
-  "knowsAbout": ["Android Development", "Kotlin", "Algorithms", "Competitive Programming"],
+  "knowsAbout": ["Web Development", "JavaScript", "WebGL", "Canvas", "Android Development", "Kotlin", "Algorithms"],
   "sameAs": [
     "https://github.com/Aizen-Sasuke",
     "https://www.linkedin.com/in/shorifullislamx17/"
@@ -1125,9 +1451,9 @@
 
   // TYPING EFFECT for hero sub
   const lines = [
-    'CSE student at IUS, Dhaka.',
-    'Building software that works.',
-    'Android · Algorithms · Always learning.'
+    'CSE undergrad at IUS, Dhaka.',
+    'I build interactive things for the browser.',
+    'Canvas · WebGL · Web Audio · Android'
   ];
   const subEl = document.getElementById('heroSub');
   let li = 0, ci = 0, full = '';
